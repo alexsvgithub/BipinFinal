@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+    table, td, th {  
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    th, td {
+      padding: 15px;
+    }
+
+    .hide{
+    display:none;
+    }
+
+    .show{
+    display:block;
+    }
+
+    @media print {
+      @page { margin: 0; }
+      body { margin: 1.6cm; }
+    }
+
+    .printss {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.text-center{
+  text-align: center;
+}
+
+#txtarea { border: 1px solid #f0f040; background-color: #fffff0; width: 100%; padding: 4px; margin: 5px; }
+   
+#content table td#tdContainer {
+    width: 100%;
+    height: 100%;
+}
+
+#innerDiv {
+    width: 100%;
+    height: 100%;
+    background-color: green;
+}
+
+textarea {
+    border: none;
+    width: 100%;
+    -webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
+       -moz-box-sizing: border-box; /* FF1+ */
+            box-sizing: border-box; /* Chrome, IE8, Opera, Safari 5.1*/
+}
+
+  </style>
+
+</head>
+<body>
+
+  {% for i in dests %}
+  <form method="POST" action="/EditableDetails">
+    {% csrf_token %}
+
+      <table>
+        <tr>
+          <th style="width:25%;">सत्र :
+            <input class="a" list="sem" value = "{{i.term}}" name="sem" id="browser" style="display:table-cell; width:20% ; height: 20%;">
+                <datalist id="sem">
+                    <option value="प्रथम ">
+                    <option value="दुतिय">
+                </datalist><br>
+              
+          </th>
+          <th style="vertical-align: middle;"><h2 style="font-family: Arial, Helvetica, sans-serif;">आकारिक व संकलित मूल्यमापन  गुण नोंद तक्ता</h2></th>
+        </tr>
+        
+        <tr>
+          <td><b>इयत्ता : <b><input type="text" class="a" name="std" value="{{i.std}}"><br><br><b>हजेरी क्र:</b><input type="text" class="a" name="rollNo" value="{{i.rollNo}}"></td><br>
+          <td> <b> विद्यार्थ्यांचे नाव : <b><input type="text" class="a" name="name" size="40" value="{{i.name}}"><br><br><b>तुकडी : </b><input type="text" class="a"  name="divi" value="{{i.divi}}"></td>
+          
+        </tr>
+
+        <!-- <tr>
+          <td><b>इयत्ता : <b><input type="text" class="a" name="std" value="{{i.std}}"></td>
+          <td> <b> विद्यार्थ्यांचे नाव : <b><input type="text" class="a" value="{{i.name}}" name="name" size="40"><input type="text" class="b" class="b" value="{{i.rollNo}}" name="rollNo" placeholder="rollNo" size="10"><input type="text" class="b" value="{{i.divi}}" name="divi" placeholder="Division" size="10"></td>
+          
+        </tr> -->
+      
+      </table>
+    <table width="100%">
+      <tr>
+          <th style="width:120px;">विषय </th>
+          <th>वर्णनात्मक नोंदणी </th>
+      </tr>
+  
+      <tr>
+        <!-- onclick="add_fields();" -->
+        <!-- onclick="add_fields();" -->
+          <td>मराठी</td>
+          <td>
+              <input class="a" list="marathi" name="m1" id="hello" value="{{i.m1}}" style="display:table-cell; width:100% ; height: 100%;">
+              <input class="a" list="marathi" name="m2" id="hello" value="{{i.m2}}" style="display:table-cell; width:100% ; height: 100%;">
+              <input class="a" list="marathi" name="m3" id="hello" value="{{i.m3}}" style="display:table-cell; width:100% ; height: 100%;">
+              <datalist id="marathi">
+                
+                    <option value= वाचन&nbspकरण्याचा&nbspपरयत्न&nbspकरतो.>
+                      <option value=“शुद्धलेखनातील  चुका  टाळण्यासाठी  प्रयत्न  करावा.” data-text=“शुद्धलेखनातील चुका टाळण्यासाठी प्रयत्न करावा.”>
+                      <option value=“वाचन गती वाढवणे आवश्यक.”>
+                      <option value=“कविता सादरीकरण तालासुरात करण्याचा प्रयत्न करतो.”>
+                      <option value=“आपल्या भाषेत चित्रवर्णन करण्याचा प्रयत्न करतो.”>
+                      <option value=“एखादी घटना प्रमाणभाषेत सांगण्याचा प्रयत्न करतो.”>
+                      <option value=“श्रुतलेखन विरामचिन्हांसह करण्याचा प्रयत्न करावा.”>
+                      <option value=“संभाषणात सहभाग घेणे अपेक्षित.”>
+                      <option value=“आत्मविश्वास वाढवणे आवश्यक.”>
+                      <option value=“अक्षरांचे स्ट्रोक्स सराव आवश्यक.”>
+                      <option value=“सर्वनामे ओळखण्याचा प्रयत्न करतो.”>
+                      <option value=“सुचविलेल्या कथेचा सारांश सांगण्याचा प्रयत्न करतो.”>
+                      <option value=“सुचवलेल्या विषयावर स्वत:चे मत मांडणे आवश्यक आहे.”>
+                      <option value=“प्रश्न तयार करण्याचे कौशल्य शिकणे आवश्यक.”>
+                      <option value=“शब्दसंपत्ती वाढवणे गरजेचे आहे.”>
+                      <option value=“बातम्यांची शीर्षके वाचण्याचा प्रयत्न करतो.”>
+                      <option value=“वाक्यांचे काळ ओळखण्याचा प्रयत्न करतो.”>
+                      <option value=“दिलेल्या सूचनांचा अर्थ समजून घेत नाही.”>
+                      <option value=“सुचविलेली कथा ऐकतो पण पूर्ण करता येत नाही.”>
+                      <option value=“सुचविलेला भाग वाचन करताना अडखळतो.”>
+                      <option value=“सुचविलेला भाग वाचताना शब्दोच्चार अशुद्ध करतो .”>
+                      <option value=“सुचविलेल्या कडव्यांचे अर्थ सांगताना चुकीचे अर्थ सांगतो.”>
+                      <option value=“सुचविलेल्या गीताची/ प्रसंगाची कृती करताना लाजतो.”>
+                      <option value=“मजकूर पाहून लिहिताना लेखनात चुका करतो.”>
+                      <option value=“मजकूर पाहून लिहिताना चुकीच्या पध्दतीने लिहितो .”>
+                      <option value=“दिलेले चित्र पाहून वर्णन/ लेखन करता येत नाही.”>
+                      <option value=“कवितेच्या ओळी/ कडवे ऐकतो पण पूर्ण करत नाही.”>
+                      <option value=“प्रश्नांची चुकीच्या पद्धतीने उत्तरे देतो.”>
+                        <option value=“गतीवाचन अचूक करतो.”>
+                          <option value=“हस्ताक्षर सुंदर आहे.”>
+                          <option value=“प्रश्नांची योग्य उत्तरे देतो.”>
+                          <option value=“वाक्यातील नामे ओळखतो.”>
+                          <option value=“वाक्यातील सर्वनामे ओळखतो.”>
+                          <option value=“सुचवलेल्या शब्दांची सामान्यरूपे सांगतो.”>
+                          <option value=“पत्रलेखन करण्यासाठी मायना व मजकूर तयार करतो.”>
+                          <option value=“श्रुतलेखन विरामचिन्हांसह करतो.”>
+                          <option value=“दिलेले चित्र पाहून योग्य भाषेत वर्णन करतो.”>
+                          <option value=“घडलेल्या घटनेवर आपले मत मांडतो.”>
+                          <option value=“दिलेल्या प्रसंगाचे सादरीकरण करतो.”>
+                          <option value=“कवितांचे अर्थ लक्षात घेतो.”>
+                          <option value=“कवितेतील ओळींचा अर्थ सांगतो.”>
+                          <option value=“दिलेल्या शब्दावरून कथा तयार करतो.”>
+                          <option value=“स्वत:चे अनुभव प्रमाणभाषेत सांगतो.”>
+                          <option value=“शब्दांच्या जाती ओळखतो.”>
+                          <option value=“वाक्प्रचारांचा व्यवहारात वापर करतो.”>
+                          <option value=“सुचवलेल्या कथेचा सारांश लिहितो.”>
+                          <option value=“पाठातील तंत्रज्ञानविषयक शब्दांची ओळख आहे.”>
+                          <option value=“मराठी कवी,लेखक यांची टोपणनावे माहीत आहे.”>
+                          <option value=“बोलीभाषेतील शब्दांसाठी प्रमाणभाषेतील शब्द सांगतो.”>
+                          <option value=“अपरिचित उतारे आकलनासह अचूक वाचतो.”>
+                          <option value=“संवादावर आधारित प्रश्नांची उत्तरे देतो.”>
+                          <option value=“ जाहिरातीवर आधारित प्रश्नांची उत्तरे देतो.”>
+                          <option value=“योग्य शब्द वापरुन सुसंगत वाक्यांचा परिच्छेद तयार करतो.”>
+                          <option value=“मुलाखतीसाठी प्रश्न तयार करतो.”>
+                          <option value=“वाक्याचा अर्थ न बदलता वाक्यावर विविध क्रिया करतो.”>
+                          <option value=“कल्पनाशक्तीचा वापर करून गोष्ट पूर्ण करतो.”>
+                          <option value=“नाटयीकरणात सहभागी होतो.”>
+                          <option value=“भाषणे सादर करतो.”>
+                          <option value=“सुचविलेल्या शब्दांसाठी समानार्थी-विरुद्धार्थी शब्द सांगतो.”>
+                          <option value=“वाक्यातील विशेषणे ओळखतो.”>
+                          <option value=“सणांविषयी मोठ्यांशी गप्पा मारते.”>
+                          <option value=“सार्वजनिक ठिकाणावरील स्वच्छता संदेशांचा वहीत संग्रह करतो.”>
+                          <option value=“शिक्षकांच्या मदतीने ई पुस्तकांचे वाचन करतो.”>
+                          <option value=“सूचनाफलक व जाहिरात यांचे नमुने तयार करतो.”>
+                          <option value=“वाक्यातील क्रियापदे ओळखतो.”>
+                          <option value=“शेतीच्या कामांची पूर्वीची व आताची स्थिती सांगतो.”>
+                          <option value=“सुचविलेल्या वाक्याचा काळ ओळखतो.”>
+                          <option value=“सुचविलेल्या प्रकारच्या काळावरील वाक्ये सांगतो.”> 
+                          <option value=“सुचविलेला उपक्रम वेळेत पूर्ण करतो.”>
+                          <option value=“प्रश्नांची अगदी योग्य व व्यवस्थित उत्तरे देतो.”>
+                          <option value=“स्वाध्याय/गृहपाठ वेळेत पूर्ण करतो.”>
+                          <option value=“बोलताना शब्द व वाक्य अचूक व समर्पक वापरतो.”>
+                          <option value=“मोठ्यांशी बोलताना फार नम्रपणे बोलतो.”>
+                          <option value=“स्वत: छोट्या छोट्या कथा तयार करतो.”>
+                          <option value=“संवाद साधण्याचे कौशल्य उत्तम आहे.”>
+                          <option value=“स्वत:चे अनुभव श्रवणीय भाषेत सांगतो.”>
+                          <option value=“सर्वांसमोर बोलताना अगदी धीटपणे बोलतो.”>
+                          <option value=“कवितेच्या ओळी/कडवे ऐकतो व लगेचच पूर्ण करतो.”>
+                          <option value=“सुचविलेल्या मुया.”>
+                          <option value=“दिलेल्या सूचना लक्षपूर्वक ऐकतो व तंतोतंत पालन करतो.”>
+                          <option value=“सुचविलेले गीत/कविता तलासुरात म्हणतो.”>
+                          <option value=“सुचविलेल्या कडव्यांचे अर्थ स्पष्ट सांगतो.”>
+                          <option value=“सुचविलेला भाग/कथा/प्रसंग सुंदर रीतीने सांगतो.”>
+                          <option value=“सुचविलेल्या गीताचे/कवितेचे साभिनय सादरीकरण करतो.”>
+                          <option value=“सुचविलेला मजकूर लिहितानाखूपच आकर्षक पद्धतीने लिहितो.”>
+                          <option value=“शब्द/मजकूर लक्षपूर्वक ऐकतो व अचूक लिहितो.”>
+                          <option value=“शब्द/मजकूर ऐकून जलद व अचूक लिहितो.”>
+                          <option value=“दिलेल्या सूचना ऐकतो व तशी कृती करतो.”>
+                          <option value=“आपले विचार ,अनुभव ,भावना स्पष्ट शब्दात व्यक्त करतो.”>
+                          <option value=“ऐकलेल्या मजकुरातील आशय स्वत:च्या शब्दात सांगतो.”>
+                          <option value=“बोलताना शब्दाचा स्पष्ट उच्चार करतो.”>
+                          <option value=“बोलताना शब्दाचा स्पष्ट उच्चार करतो.”>
+                          <option value=“कोणतीही गोष्ट लक्षपूर्वक ऐकतो.”>
+                          <option value=“प्रभावीपणे प्रकटवाचन करतो.”>
+                          <option value=“मजकुराचे वाचन समजपूर्वक करतो.”>
+                          <option value=“आत्मविश्वासपूर्वक बोलतो.”>
+                          <option value=“दिलेल्या विषयावर मुद्देसूद बोलतो.”>
+                          <option value=“लक्षपूर्वक , एकाग्रतेने व समजपुर्वक मुकवाचन करतो.”>
+                          <option value=“विविध विषयावरील चर्चेत भाग घेतो.”>
+                          <option value=“स्वत:हून प्रश्न विचारतो.”>
+                          <option value=“नाट्यभिनय प्रसंगानुरूप व व्यक्तिनुरूप करतो.”>
+                          <option value=“कविता तालासुरात साभिनय म्हणतो.”>
+                          <option value=“दैनंदिन व्यवहारात प्रमाणभाषेचा वापर करतो.”>
+                          <option value=“विविध बोलीभाषेतील नवीन शब्द समजून घेतो.”>
+                          <option value=“बोलीभाषा व प्रमाणभाषा यातील फरक जाणतो.”>
+                          <option value=“व्याकरणानुसार भाषेचा वापर करतो.”>
+                          <option value=“भाषण, संभाषण ,संवाद ,चर्चा एकाग्रतेने ऐकतो.”>
+                          <option value=“बोधकथा, वर्तमानपत्रे , मासिके इ वाचतो व इतरांना माहिती सांगतो.”>
+                          <option value=“ऐकलेल्या ,वाचलेल्या गोष्टीबाबत निष्कर्ष काढतो.”>
+                          <option value=“मजकूर वाचून प्रश्नाची योग्य उत्तरे देतो.”>
+                          <option value=“निंबध लेखनात आपल्या भाषेत विचार मांडतो.”>
+                          <option value=“शब्द , वाक्यप्रचार म्हणी , बोधवाक्ये इ चा लेखनात वापर करतो.”>
+                          <option value=“अवांतर वाचन करतो.”>
+                          <option value=“गोष्टी,कविता ,लेख वर्णन इ स्वरूपाने लेखन करतो.”>
+                          <option value=“मुद्देसूद लेखन करतो.”>
+                          <option value=“शुद्धलेखन अचूक करतो.”>
+                          <option value=“अचूक अनुलेखन करतो.”>
+                          <option value=“स्वाध्याय अचूक सोडवितो.”>
+                          <option value=“स्वयंअध्ययन करतो.”>
+                          <option value=“अडचणी समस्या शिक्षकाकडे मांडतो.”>
+                          <option value=“नियम, सुचना ,शिस्त यांचे पालन करतो.”>
+                          <option value=“लेखनाचे नियम पाळतो.”>
+                          <option value=“लेखनात विरामचिन्हाचा योग्य वापर करतो.”>
+                          <option value=“वाक्यप्रचार व म्हणीचा अर्थ सांगून वाक्यात उपयोग करतो.”>
+                          <option value=“दिलेल्या वेळेत प्रकटवाचन , मुकवाचन करतो.”>
+                          <option value=“पाठातील शंका विचारतो.”>
+                          <option value=“हस्ताक्षर सुंदर व वळणदार आहे.”>
+                          <option value=“गृहपाठ व स्वाध्याय वेळेवर करतो.”>
+                          <option value=“वाचनाची आवड आहे.”>
+                          <option value=“कविता चालीमध्ये म्हणतो.”>
+                          <option value=“सुविचाराचा संग्रह करतो.”>
+                          <option value=“प्रश्नांची अचूक उत्तरे देतो.”>
+                          <option value=“दिलेल्या विषयावर निबंध लिहितो.”>
+                          <option value=“बोधकथा सांगतो.”>
+                          <option value=“वाक्यप्रचार व म्हणीचा व्यवहारात उपयोग करतो .”>
+                          
+                      
+                  
+                  
+              </datalist><br>
+              <div id="wrapper1">
+  
+              </div>
+          </td>
+      </tr>
+      <tr>
+        <td>हिंदी</td>
+        <td>
+          <input class="a" list="hindi" name="h1" id="hello" value="{{i.h1}}" style="display:table-cell; width:100% ; height: 100%;">
+          <input class="a" list="hindi" name="h2" id="hello" value="{{i.h2}}"style="display:table-cell; width:100% ; height: 100%;">
+          <input class="a" list="hindi" name="h3" id="hello"value="{{i.h3}}" style="display:table-cell; width:100% ; height: 100%;">
+          <datalist id="hindi">
+              <option value="hindi">
+              
+          </datalist><br>
+            <div id="wrapper2">
+  
+            </div>
+        </td>    
+      </tr>
+      <tr>
+          <td>इंग्रजी<br></td>
+          <td>
+  
+            <input class="a"  list="english" name="e1" id="browser" value="{{i.e1}}"style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a"  list="english" name="e2" id="browser" value="{{i.e2}}"style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a"  list="english" name="e3" id="browser" value="{{i.e3}}"style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="english">
+              
+              <option value="english">
+            </datalist><br>
+            <div id="wrapper3">
+  
+            </div>
+           
+  
+          </td>
+        </tr>
+        <tr>
+          <td>गणित<br></td>
+          <td>
+  
+            <input class="a" list="maths" name="mth1" id="browser" value="{{i.mth1}}" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="maths" name="mth2" id="browser" value="{{i.mth2}}" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="maths" name="mth3" id="browser" value="{{i.mth3}}" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="maths">
+              <option value="maths">
+              
+            </datalist><br>
+            <div id="wrapper4">
+  
+            </div>
+            
+  
+          </td>
+        </tr>
+        <tr>
+          <td>सा.विज्ञान<br></td>
+          <td>
+  
+            <input class="a" list="science" name="sv1" id="browser" value="{{i.sv1}}" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="science" name="sv2" id="browser" value="{{i.sv2}}" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="science" name="sv3" id="browser" value="{{i.sv3}}" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="science">
+              <option value="science">
+             
+            </datalist><br>
+            <div id="wrapper5">
+  
+            </div>
+           
+  
+          </td>
+        </tr>
+        <tr>
+          <td>सामाजिक शास्त्रे</td>
+          <td>
+  
+            <input class="a" list="history" name="ss1" id="browser" value="{{i.ss1}}" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="history" name="ss2" id="browser" value="{{i.ss2}}" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="history" name="ss3" id="browser" value="{{i.ss3}}" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="history">
+              <option value="history">
+              
+            </datalist><br>
+            <div id="wrapper6">
+  
+            </div>
+            
+  
+          </td>
+        </tr>
+        <tr>
+          <td>कला<br></td>
+          <td>
+  
+            <input class="a" list="skill" name="k1" id="browser" value="{{i.k1}}" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="skill" name="k2" id="browser" value="{{i.k2}}" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="skill" name="k3" id="browser" value="{{i.k3}}" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="skill">
+              <option value="skill">
+             
+            </datalist><br>
+            <div id="wrapper7">
+  
+            </div>
+  
+          </td>
+        </tr>
+        <tr>
+          <td>कार्या<br></td>
+          <td>
+  
+            <input class="a" list="work" name="kr1" id="browser" value="{{i.kr1}}"style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="work" name="kr2" id="browser" value="{{i.kr2}}" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="work" name="kr3" id="browser" value="{{i.kr3}}" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="work">
+              <option value="work">
+              
+            </datalist><br>
+            <div id="wrapper8">
+  
+            </div>
+            
+  
+          </td>
+        </tr>
+        <tr>
+          <td>शा.शिक्षण <br></td>
+          <td>
+  
+            <input class="a" list="social-science" name="ssk1" id="browser" value="{{i.ssk1}}" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="social-science" name="ssk2" id="browser" value="{{i.ssk2}}" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="social-science" name="ssk3" id="browser" value="{{i.ssk3}}" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="social-science">
+              <option value="social-science">
+             
+            </datalist><br>
+            <div id="wrapper9">
+  
+            </div>
+            
+  
+          </td>
+        </tr>
+        <tr>
+          <td>hb<br></td>
+          <td>
+  
+            <input class="a" list="hb" name="hb1" id="browser" value="{{i.hb1}}"style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="hb" name="hb2" id="browser" value="{{i.hb2}}"style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="hb" name="hb3" id="browser" value="{{i.hb3}}"style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="hb">
+              <option value="hb">
+             
+            </datalist><br>
+            <div id="wrapper10">
+  
+            </div>
+            
+  
+          </td>
+        </tr>
+        <tr>
+          <td>vp<br></td>
+          <td>
+  
+            <input class="a" list="vp" name="vp1" id="browser" value="{{i.vp1}}"style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="vp" name="vp2" id="browser" value="{{i.vp2}}"style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="vp" name="vp3" id="browser" value="{{i.vp3}}"style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="vp">
+              <option value="vp">
+             
+            </datalist><br>
+            <div id="wrapper11">
+  
+            </div>
+            
+  
+          </td>
+        </tr>
+        <tr>
+          <td>mis1<br></td>
+          <td>
+  
+            <input class="a" list="mis1" name="mis1" id="browser" value="{{i.mis1}}"style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="mis1" name="mis2" id="browser" value="{{i.mis2}}"style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="mis1" name="mis3" id="browser" value="{{i.mis3}}"style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="mis1">
+              <option value="mis1">
+             
+            </datalist><br>
+            <div id="wrapper12">
+  
+            </div>
+            
+  
+          </td>
+        </tr>
+        <tr>
+          <td>mis2<br></td>
+          <td>
+  
+            <input class="a" list="mis2" name="miss1" id="browser" value="{{i.miss1}}"style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="mis2" name="miss2" id="browser" value="{{i.miss2}}"style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="mis2" name="miss3" id="browser" value="{{i.miss3}}"style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="mis2">
+              <option value="mis2">
+             
+            </datalist><br>
+            <div id="wrapper13">
+  
+            </div>
+            
+  
+          </td>
+        </tr>
+
+
+      </table>
+  
+
+
+      <input type="text" name="TheId" class="b" value="{{i.rollNo}}" readonly">
+
+
+    
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="b btn btn-primary">Save</button>
+      </div>
+    </div>
+  </form>
+  {% endfor %}
+
+
+  
+  
+
+
+
+
+  
+    
+
+   <br>
+   <br>
+   <br>
+   <div class="text-center" width="100%">
+    <button id="cmd" onclick="printss();" class="b printss">Print</button>
+   </div>
+    
+<br>
+    
+    <script>
+      
+
+      $("button").click(function() {
+          ID=this.id;
+          console.log(ID)
+
+          if(ID == 1){
+            var dummy = '<input class="a" list="marathi" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+          
+          }
+          else if(ID == 2){
+            var dummy = ' <input class="a" list="hindi" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+         
+          }else if(ID == 3){
+
+            var dummy = ' <input class="a" list="english" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+         }else if(ID == 4){
+            var dummy = ' <input class="a" list="maths" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+
+         }else if(ID == 5){
+            var dummy = ' <input class="a" list="science" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+                        
+          }else if(ID == 6){
+            var dummy = ' <input class="a" list="history" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+                        
+        }else if(ID == 7){
+            var dummy = ' <input class="a" list="skill" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+                        
+          }else if(ID == 8){
+            var dummy = ' <input class="a" list="work" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+
+          }else if(ID == 9){
+            
+            var dummy = ' <input class="a" list="social-science" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+                    
+          }
+         
+
+          //  probable if condition to check which datalist to enter on which click else the data list may mixup
+
+          
+          document.getElementById('wrapper'+ID+'').innerHTML += dummy;  
+
+      });
+
+      function printss(){
+       
+       
+
+            $('.a').css({
+                'border': '0',
+                'outline': '0',
+            });
+            $('.b').css({
+                'display':'none',
+            });
+
+           window.print();
+
+           
+
+        }
+
+      
+      
+      
+    </script>
+  
+    
+    
+</body>
+</html>
+
+
+

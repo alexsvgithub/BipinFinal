@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+    table, td, th {  
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    th, td {
+      padding: 15px;
+    }
+
+    .hide{
+    display:none;
+    }
+
+    .show{
+    display:block;
+    }
+
+    @media print {
+      @page { margin: 0; }
+      body { margin: 1.6cm; }
+    }
+
+    .printss {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.text-center{
+  text-align: center;
+}
+
+#txtarea { border: 1px solid #f0f040; background-color: #fffff0; width: 100%; padding: 4px; margin: 5px; }
+   
+#content table td#tdContainer {
+    width: 100%;
+    height: 100%;
+}
+
+#innerDiv {
+    width: 100%;
+    height: 100%;
+    background-color: green;
+}
+
+textarea {
+    border: none;
+    width: 100%;
+    -webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
+       -moz-box-sizing: border-box; /* FF1+ */
+            box-sizing: border-box; /* Chrome, IE8, Opera, Safari 5.1*/
+}
+
+  </style>
+
+</head>
+<body>
+
+  
+  <form method="POST" action="/Details">
+    {% csrf_token %}
+
+    <table>
+      <tr>
+        <th style="width:25%;">सत्र :
+          <input class="a" list="sem" name="sem" id="browser" style="display:table-cell; width:20% ; height: 20%;">
+              <datalist id="sem">
+                  <option value="प्रथम ">
+                  <option value="दुतिय">
+              </datalist><br>
+            
+        </th>
+        <th style="vertical-align: middle;"><h2 style="font-family: Arial, Helvetica, sans-serif;">आकारिक व संकलित मूल्यमापन  गुण नोंद तक्ता </h2></th>
+      </tr>
+      <tr>
+        <td><b>इयत्ता : <b><input type="text" class="a" name="std"><br><br><b>हजेरी क्र:</b><input type="text" class="b" name="rollNo" ></td><br>
+        <td> <b> विद्यार्थ्यांचे नाव : <b><input type="text" class="a" name="name" size="40"><br><br><b>तुकडी : </b><input type="text" class="b" name="divi"></td>
+        
+      </tr>
+    
+    </table>
+    <table width="100%">
+      <tr>
+          <th style="width:120px;">विषय </th>
+          <th>वर्णनात्मक नोंदणी </th>
+      </tr>
+  
+      <tr>
+        <!-- onclick="add_fields();" -->
+        <!-- onclick="add_fields();" -->
+          <td>मराठी</td>
+          <td>
+              <input class="a" list="marathi" name="m1" id="hello" style="display:table-cell; width:100% ; height: 100%;">
+              <input class="a" list="marathi" name="m2" id="hello" style="display:table-cell; width:100% ; height: 100%;">
+              <input class="a" list="marathi" name="m3" id="hello" style="display:table-cell; width:100% ; height: 100%;">
+              <datalist id="marathi">
+                  <option value="marathi">
+                  
+                  
+              </datalist><br>
+              <div id="wrapper1">
+  
+              </div>
+          </td>
+      </tr>
+      <tr>
+        <td>हिंदी</td>
+        <td>
+          <input class="a" list="hindi" name="h1" id="hello" style="display:table-cell; width:100% ; height: 100%;">
+          <input class="a" list="hindi" name="h2" id="hello" style="display:table-cell; width:100% ; height: 100%;">
+          <input class="a" list="hindi" name="h3" id="hello" style="display:table-cell; width:100% ; height: 100%;">
+          <datalist id="hindi">
+              <option value="hindi">
+              
+          </datalist><br>
+            <div id="wrapper2">
+  
+            </div>
+        </td>    
+      </tr>
+      <tr>
+          <td>इंग्रजी<br></td>
+          <td>
+  
+            <input class="a"  list="english" name="e1" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a"  list="english" name="e2" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a"  list="english" name="e3" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="english">
+              
+              <option value="english">
+            </datalist><br>
+            <div id="wrapper3">
+  
+            </div>
+           
+  
+          </td>
+        </tr>
+        <tr>
+          <td>गणित<br></td>
+          <td>
+  
+            <input class="a" list="maths" name="mth1" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="maths" name="mth2" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="maths" name="mth3" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="maths">
+              <option value="maths">
+              
+            </datalist><br>
+            <div id="wrapper4">
+  
+            </div>
+            
+  
+          </td>
+        </tr>
+        <tr>
+          <td>सा.विज्ञान<br></td>
+          <td>
+  
+            <input class="a" list="science" name="sv1" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="science" name="sv2" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="science" name="sv3" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="science">
+              <option value="science">
+             
+            </datalist><br>
+            <div id="wrapper5">
+  
+            </div>
+           
+  
+          </td>
+        </tr>
+        <tr>
+          <td>सामाजिक शास्त्रे</td>
+          <td>
+  
+            <input class="a" list="history" name="ss1" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="history" name="ss2" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="history" name="ss3" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="history">
+              <option value="history">
+              
+            </datalist><br>
+            <div id="wrapper6">
+  
+            </div>
+            
+  
+          </td>
+        </tr>
+        <tr>
+          <td>कला<br></td>
+          <td>
+  
+            <input class="a" list="skill" name="k1" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="skill" name="k2" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="skill" name="k3" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="skill">
+              <option value="skill">
+             
+            </datalist><br>
+            <div id="wrapper7">
+  
+            </div>
+  
+          </td>
+        </tr>
+        <tr>
+          <td>कार्या<br></td>
+          <td>
+  
+            <input class="a" list="work" name="kr1" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="work" name="kr2" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="work" name="kr3" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="work">
+              <option value="work">
+              
+            </datalist><br>
+            <div id="wrapper8">
+  
+            </div>
+            
+  
+          </td>
+        </tr>
+        <tr>
+          <td>शा.शिक्षण <br></td>
+          <td>
+  
+            <input class="a" list="social-science" name="ssk1" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="social-science" name="ssk2" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="social-science" name="ssk3" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="social-science">
+              <option value="social-science">
+             
+            </datalist><br>
+            <div id="wrapper9">
+  
+            </div>
+            
+  
+          </td>
+        </tr>
+        <tr>
+          <td>hb<br></td>
+          <td>
+  
+            <input class="a" list="hb" name="hb1" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="hb" name="hb2" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="hb" name="hb3" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="hb">
+              <option value="hb">
+             
+            </datalist><br>
+            <div id="wrapper10">
+  
+            </div>
+            
+  
+          </td>
+        </tr>
+        <tr>
+          <td>vp<br></td>
+          <td>
+  
+            <input class="a" list="vp" name="vp1" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="vp" name="vp2" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="vp" name="vp3" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="vp">
+              <option value="vp">
+             
+            </datalist><br>
+            <div id="wrapper11">
+  
+            </div>
+            
+  
+          </td>
+        </tr>
+        <tr>
+          <td>mis1<br></td>
+          <td>
+  
+            <input class="a" list="mis1" name="mis1" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="mis1" name="mis2" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="mis1" name="mis3" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="mis1">
+              <option value="mis1">
+             
+            </datalist><br>
+            <div id="wrapper12">
+  
+            </div>
+            
+  
+          </td>
+        </tr>
+        <tr>
+          <td>mis2<br></td>
+          <td>
+  
+            <input class="a" list="mis2" name="miss1" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="mis2" name="miss2" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <input class="a" list="mis2" name="miss3" id="browser" style="display:table-cell; width:100% ; height: 100%;">
+            <datalist id="mis2">
+              <option value="mis2">
+             
+            </datalist><br>
+            <div id="wrapper13">
+  
+            </div>
+            
+  
+          </td>
+        </tr>
+
+
+      </table>
+  
+
+
+
+
+
+    
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="b btn btn-primary">Save</button>
+      </div>
+    </div>
+  </form>
+
+
+
+  
+  
+
+
+
+
+  
+    
+
+   <br>
+   <br>
+   <br>
+   <div class="text-center" width="100%">
+    <button id="cmd" onclick="printss();" class="b printss">Print</button>
+   </div>
+    
+<br>
+    
+    <script>
+      
+
+      $("button").click(function() {
+          ID=this.id;
+          console.log(ID)
+
+          if(ID == 1){
+            var dummy = '<input class="a" list="marathi" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+          
+          }
+          else if(ID == 2){
+            var dummy = ' <input class="a" list="hindi" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+         
+          }else if(ID == 3){
+
+            var dummy = ' <input class="a" list="english" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+         }else if(ID == 4){
+            var dummy = ' <input class="a" list="maths" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+
+         }else if(ID == 5){
+            var dummy = ' <input class="a" list="science" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+                        
+          }else if(ID == 6){
+            var dummy = ' <input class="a" list="history" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+                        
+        }else if(ID == 7){
+            var dummy = ' <input class="a" list="skill" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+                        
+          }else if(ID == 8){
+            var dummy = ' <input class="a" list="work" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+
+          }else if(ID == 9){
+            
+            var dummy = ' <input class="a" list="social-science" name="alex" id="hello" style="display:table-cell; width:100% ; height: 100%;">';
+                    
+          }
+         
+
+          //  probable if condition to check which datalist to enter on which click else the data list may mixup
+
+          
+          document.getElementById('wrapper'+ID+'').innerHTML += dummy;  
+
+      });
+
+      function printss(){
+       
+       
+
+            $('.a').css({
+                'border': '0',
+                'outline': '0',
+            });
+            $('.b').css({
+                'display':'none',
+            });
+
+           window.print();
+
+           
+
+        }
+
+      
+      
+      
+    </script>
+  
+    
+    
+</body>
+</html>
+
+
+
